@@ -84,27 +84,50 @@ jobs:
           path: dist
 
   macos:
-    name: macOS
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: |
-          brew update
-          brew install cmake gtkmm4 pkg-config
+    # 1️⃣ Instalar dependencias
+    - name: Install dependencies
+      run: |
+        brew update
+        brew install cmake gtkmm4 pkg-config
 
-      - name: Configure (macOS)
-        run: |
-          export CMAKE_PREFIX_PATH="$(brew --prefix)"
-          cmake -S . -B build
+    # 2️⃣ Configurar CMake
+    - name: Configure
+      run: |
+        export CMAKE_PREFIX_PATH="$(brew --prefix)"
+        cmake -S . -B build
 
-      - name: Build
-        run: cmake --build build -j$(sysctl -n hw.ncpu)
+    # 3️⃣ Build
+    - name: Build
+      run: cmake --build build -j$(sysctl -n hw.ncpu)
 
-      - name: Upload binary
-        uses: actions/upload-artifact@v4
-        with:
-          name: violet-macos
-          path: build/violet
+    # 4️⃣ Copiar dylibs necesarias para portable
+    - name: Copy GTK dylibs (portable)
+      run: |
+        mkdir -p dist/lib
+        cp build/violet dist/
+        
+        # Lista de librerías críticas de GTK y runtime
+        GTK_LIBS=$(otool -L build/violet | grep /opt/homebrew/opt | awk '{print $1}')
+        for lib in $GTK_LIBS; do
+          cp "$lib" dist/lib/
+        done
+        
+        # Ajustar rpath del binario
+        install_name_tool -add_rpath @executable_path/lib dist/violet
+        
+        # Ajustar paths de cada dylib copiada
+        for lib in dist/lib/*.dylib; do
+          install_name_tool -id @rpath/$(basename $lib) "$lib"
+        done
+
+    # 5️⃣ Subir artefacto
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: violet-macos-portable
+        path: dist
