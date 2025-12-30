@@ -41,15 +41,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: msys2/setup-msys2@v2
+      - name: Setup MSYS2
+        uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
           update: true
           install: >
             mingw-w64-x86_64-toolchain
-            mingw-w64-x86_64-gtkmm
-            mingw-w64-x86_64-cmake
-            mingw-w64-x86_64-pkgconf
+            mingw-w64-x86_64-gtkmm4
+            mingw-w64-x86_64-pkg-config
+            mingw-w64-x86_64-glib2
 
       - name: Configure (Windows)
         shell: msys2 {0}
