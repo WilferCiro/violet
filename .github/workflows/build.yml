@@ -79,8 +79,10 @@ jobs:
           brew update
           brew install cmake gtkmm4 pkg-config
 
-      - name: Configure
-        run: cmake -S . -B build
+      - name: Configure (macOS)
+        run: |
+          export CMAKE_PREFIX_PATH="$(brew --prefix)"
+          cmake -S . -B build
 
       - name: Build
         run: cmake --build build -j$(sysctl -n hw.ncpu)
