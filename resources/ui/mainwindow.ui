@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="gtk" version="4.0"/>
+  <object class="GtkImage" id="deleteImage">
+    <property name="visible">1</property>
+    <property name="icon-name">user-trash</property>
+  </object>
+  <object class="GtkImage" id="searchImage">
+    <property name="visible">1</property>
+    <property name="icon-name">edit-find</property>
+  </object>
+  <object class="GtkApplicationWindow" id="main_window">
+    <property name="default-width">1200</property>
+    <property name="default-height">800</property>
+    <child>
+      <object class="GtkPaned">
+        <property name="visible">1</property>
+        <property name="resize-start-child">0</property>
+        <property name="focusable">1</property>
+        <property name="start-child">
+          <object class="GtkNotebook">
+            <property name="visible">1</property>
+            <property name="focusable">1</property>
+            <property name="tab-pos">bottom</property>
+            <property name="show-border">0</property>
+            <child>
+              <object class="GtkNotebookPage">
+                <property name="child">
+                  <object class="GtkExpander">
+                    <property name="visible">1</property>
+                    <property name="focusable">1</property>
+                    <property name="expanded">1</property>
+                    <child>
+                      <object class="GtkListBox">
+                        <property name="visible">1</property>
+                        <property name="activate-on-single-click">0</property>
+                        <child>
+                          <object class="GtkListBoxRow">
+                            <property name="visible">1</property>
+                            <property name="focusable">1</property>
+                            <property name="selectable">0</property>
+                            <property name="child">
+                              <object class="GtkBox">
+                                <property name="visible">1</property>
+                                <property name="margin-start">20</property>
+                                <property name="spacing">10</property>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">1</property>
+                                    <property name="label" translatable="1">POST</property>
+                                    <attributes>
+                                      <attribute name="foreground" value="#3333d1d17a7a"></attribute>
+                                    </attributes>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">1</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="label" translatable="1">Add</property>
+                                    <property name="xalign">0</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkListBoxRow">
+                            <property name="visible">1</property>
+                            <property name="focusable">1</property>
+                            <property name="selectable">0</property>
+                            <property name="child">
+                              <object class="GtkLabel">
+                                <property name="visible">1</property>
+                                <property name="margin-start">20</property>
+                                <property name="margin-top">5</property>
+                                <property name="margin-bottom">5</property>
+                                <property name="label" translatable="1">POST - reject</property>
+                                <property name="xalign">0</property>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label">
+                      <object class="GtkBox">
+                        <property name="visible">1</property>
+                        <property name="margin-start">10</property>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="visible">1</property>
+                            <property name="icon-name">folder</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">1</property>
+                            <property name="hexpand">1</property>
+                            <property name="margin-start">5</property>
+                            <property name="label" translatable="1">Collection 1</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+                <property name="tab">
+                  <object class="GtkLabel">
+                    <property name="visible">1</property>
+                    <property name="label" translatable="1">Collections</property>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkNotebookPage">
+                <property name="position">1</property>
+                <property name="child">
+                  <object class="GtkLabel">
+                    <property name="visible">1</property>
+                    <property name="label" translatable="1">label</property>
+                  </object>
+                </property>
+                <property name="tab">
+                  <object class="GtkLabel">
+                    <property name="visible">1</property>
+                    <property name="label" translatable="1">History</property>
+                  </object>
+                </property>
+              </object>
+            </child>
+          </object>
+        </property>
+        <property name="end-child">
+          <object class="GtkNotebook">
+            <property name="visible">1</property>
+            <property name="focusable">1</property>
+            <property name="show-border">0</property>
+            <child>
+              <object class="GtkNotebookPage">
+                <property name="child">
+                  <object class="GtkBox">
+                    <property name="visible">1</property>
+                    <property name="margin-start">10</property>
+                    <property name="margin-end">10</property>
+                    <property name="margin-top">10</property>
+                    <property name="margin-bottom">10</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="visible">1</property>
+                        <property name="margin-start">10</property>
+                        <property name="margin-end">10</property>
+                        <property name="margin-top">10</property>
+                        <property name="margin-bottom">10</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">8</property>
+                        <child>
+                          <object class="GtkEntry">
+                            <property name="visible">1</property>
+                            <property name="focusable">1</property>
+                            <property name="placeholder-text" translatable="1">Request name</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">1</property>
+                            <child>
+                              <object class="GtkComboBoxText">
+                                <property name="visible">1</property>
+                                <property name="margin-end">5</property>
+                                <property name="active">0</property>
+                                <items>
+                                  <item translatable="yes">GET</item>
+                                  <item translatable="yes">POST</item>
+                                  <item translatable="yes">PUT</item>
+                                  <item translatable="yes">PATCH</item>
+                                  <item translatable="yes">DELETE</item>
+                                </items>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkEntry">
+                                <property name="visible">1</property>
+                                <property name="hexpand">1</property>
+                                <property name="focusable">1</property>
+                                <property name="placeholder-text" translatable="1">Enter URL</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="visible">1</property>
+                                <property name="label" translatable="1">Send</property>
+                                <property name="focusable">1</property>
+                                <property name="receives-default">1</property>
+                                <property name="margin-start">10</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkPaned">
+                        <property name="visible">1</property>
+                        <property name="vexpand">1</property>
+                        <property name="focusable">1</property>
+                        <property name="start-child">
+                          <object class="GtkNotebook">
+                            <property name="visible">1</property>
+                            <property name="focusable">1</property>
+                            <property name="show-border">0</property>
+                            <property name="scrollable">1</property>
+                            <child>
+                              <object class="GtkNotebookPage">
+                                <property name="child">
+                                  <object class="GtkBox">
+                                    <property name="visible">1</property>
+                                    <property name="margin-top">10</property>
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkBox">
+                                        <property name="visible">1</property>
+                                        <property name="margin-start">10</property>
+                                        <child>
+                                          <object class="GtkToggleButton">
+                                            <property name="visible">1</property>
+                                            <property name="label" translatable="1">JSON</property>
+                                            <property name="focusable">1</property>
+                                            <property name="receives-default">1</property>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkToggleButton">
+                                            <property name="visible">1</property>
+                                            <property name="label" translatable="1">Text</property>
+                                            <property name="focusable">1</property>
+                                            <property name="receives-default">1</property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkEntry">
+                                        <property name="visible">1</property>
+                                        <property name="vexpand">1</property>
+                                        <property name="focusable">1</property>
+                                        <property name="margin-start">10</property>
+                                        <property name="margin-end">10</property>
+                                        <property name="margin-top">10</property>
+                                        <property name="margin-bottom">10</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </property>
+                                <property name="tab">
+                                  <object class="GtkLabel">
+                                    <property name="visible">1</property>
+                                    <property name="label" translatable="1">Body</property>
+                                  </object>
+                                </property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkNotebookPage">
+                                <property name="position">1</property>
+                                <property name="child">
+                                  <object class="GtkBox">
+                                    <property name="visible">1</property>
+                                    <property name="margin-start">20</property>
+                                    <property name="margin-end">20</property>
+                                    <property name="margin-top">20</property>
+                                    <property name="margin-bottom">20</property>
+                                    <property name="orientation">vertical</property>
+                                    <property name="spacing">20</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="visible">1</property>
+                                        <property name="valign">center</property>
+                                        <property name="label" translatable="1">Type</property>
+                                        <property name="xalign">0</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkComboBoxText">
+                                        <property name="visible">1</property>
+                                        <items>
+                                          <item translatable="yes">No auth</item>
+                                          <item translatable="yes">Bearer</item>
+                                          <item translatable="yes">Basic</item>
+                                          <item translatable="yes">API key</item>
+                                        </items>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkEntry">
+                                        <property name="visible">1</property>
+                                        <property name="focusable">1</property>
+                                        <property name="placeholder-text" translatable="1">Bearer token</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </property>
+                                <property name="tab">
+                                  <object class="GtkLabel">
+                                    <property name="visible">1</property>
+                                    <property name="label" translatable="1">Authorization</property>
+                                  </object>
+                                </property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkNotebookPage">
+                                <property name="position">2</property>
+                                <property name="child">
+                                  <object class="GtkLabel">
+                                    <property name="visible">1</property>
+                                    <property name="label" translatable="1">label</property>
+                                  </object>
+                                </property>
+                                <property name="tab">
+                                  <object class="GtkLabel">
+                                    <property name="visible">1</property>
+                                    <property name="label" translatable="1">Headers</property>
+                                  </object>
+                                </property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkNotebookPage">
+                                <property name="position">3</property>
+                                <property name="child">
+                                  <object class="GtkBox">
+                                    <property name="visible">1</property>
+                                    <property name="margin-start">10</property>
+                                    <property name="margin-end">10</property>
+                                    <property name="margin-top">10</property>
+                                    <property name="margin-bottom">10</property>
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkBox">
+                                        <property name="visible">1</property>
+                                        <child>
+                                          <object class="GtkCheckButton">
+                                            <property name="visible">1</property>
+                                            <property name="focusable">1</property>
+                                            <property name="tooltip-text" translatable="1">Enabled</property>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkEntry">
+                                            <property name="visible">1</property>
+                                            <property name="hexpand">1</property>
+                                            <property name="focusable">1</property>
+                                            <property name="margin-start">10</property>
+                                            <property name="placeholder-text" translatable="1">Key</property>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkEntry">
+                                            <property name="visible">1</property>
+                                            <property name="hexpand">1</property>
+                                            <property name="focusable">1</property>
+                                            <property name="margin-start">10</property>
+                                            <property name="placeholder-text" translatable="1">Value</property>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkButton">
+                                            <property name="visible">1</property>
+                                            <property name="focusable">1</property>
+                                            <property name="margin-start">10</property>
+                                            <child>
+                                              <object class="GtkImage">
+                                                <property name="visible">1</property>
+                                                <property name="icon-name">user-trash</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <placeholder/>
+                                    </child>
+                                    <child>
+                                      <placeholder/>
+                                    </child>
+                                  </object>
+                                </property>
+                                <property name="tab">
+                                  <object class="GtkLabel">
+                                    <property name="visible">1</property>
+                                    <property name="label" translatable="1">Params</property>
+                                  </object>
+                                </property>
+                              </object>
+                            </child>
+                          </object>
+                        </property>
+                        <property name="end-child">
+                          <object class="GtkBox">
+                            <property name="visible">1</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">1</property>
+                                <property name="spacing">50</property>
+                                <property name="baseline-position">bottom</property>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">1</property>
+                                    <property name="margin-start">20</property>
+                                    <property name="label" translatable="1">200</property>
+                                    <attributes>
+                                      <attribute name="weight" value="ultrabold"></attribute>
+                                      <attribute name="scale" value="2"></attribute>
+                                      <attribute name="foreground" value="#2626a2a26969"></attribute>
+                                    </attributes>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">1</property>
+                                    <property name="label" translatable="1">321 ms</property>
+                                    <attributes>
+                                      <attribute name="weight" value="light"></attribute>
+                                      <attribute name="variant" value="unicase"></attribute>
+                                    </attributes>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkNotebook">
+                                <property name="visible">1</property>
+                                <property name="vexpand">1</property>
+                                <property name="focusable">1</property>
+                                <property name="show-border">0</property>
+                                <child>
+                                  <object class="GtkNotebookPage">
+                                    <property name="child">
+                                      <object class="GtkLabel">
+                                        <property name="visible">1</property>
+                                        <property name="label" translatable="1">label</property>
+                                      </object>
+                                    </property>
+                                    <property name="tab">
+                                      <object class="GtkLabel">
+                                        <property name="visible">1</property>
+                                        <property name="label" translatable="1">Body</property>
+                                      </object>
+                                    </property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkNotebookPage">
+                                    <property name="position">1</property>
+                                    <property name="child">
+                                      <object class="GtkBox">
+                                        <property name="visible">1</property>
+                                        <property name="margin-start">10</property>
+                                        <property name="orientation">vertical</property>
+                                        <child>
+                                          <object class="GtkBox">
+                                            <property name="visible">1</property>
+                                            <property name="spacing">20</property>
+                                            <child>
+                                              <object class="GtkLabel">
+                                                <property name="visible">1</property>
+                                                <property name="label" translatable="1">cache-control: </property>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="GtkLabel">
+                                                <property name="visible">1</property>
+                                                <property name="label" translatable="1">private, no-cache, no-store, max-age=0, must-revalidate</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </property>
+                                    <property name="tab">
+                                      <object class="GtkLabel">
+                                        <property name="visible">1</property>
+                                        <property name="label" translatable="1">Headers</property>
+                                      </object>
+                                    </property>
+                                  </object>
+                                </child>
+                                <child type="action-end">
+                                  <object class="GtkButton">
+                                    <property name="visible">1</property>
+                                    <property name="focusable">1</property>
+                                    <property name="receives-default">1</property>
+                                    <child>
+                                      <object class="GtkImage">
+                                        <property name="visible">1</property>
+                                        <property name="icon-name">edit-copy</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+                <property name="tab">
+                  <object class="GtkLabel">
+                    <property name="visible">1</property>
+                    <property name="label" translatable="1">[POST] https://google.com</property>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child type="action-start">
+              <object class="GtkButton">
+                <property name="visible">1</property>
+                <property name="focusable">1</property>
+                <child>
+                  <object class="GtkImage" id="addRequestImage">
+                    <property name="visible">1</property>
+                    <property name="icon-name">window-new</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </property>
+      </object>
+    </child>
+    <child type="titlebar">
+      <object class="GtkHeaderBar">
+        <property name="visible">1</property>
+        <child>
+          <object class="GtkButton">
+            <property name="visible">1</property>
+            <property name="focusable">1</property>
+            <property name="receives-default">1</property>
+            <property name="tooltip-text" translatable="1">Nueva colección</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">1</property>
+                <property name="icon-name">document-new</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="visible">1</property>
+            <property name="focusable">1</property>
+            <property name="receives-default">1</property>
+            <property name="tooltip-text" translatable="1">Abrir colección</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">1</property>
+                <property name="icon-name">document-open</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="visible">1</property>
+            <property name="focusable">1</property>
+            <property name="tooltip-text" translatable="1">Búsqueda rápida</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">1</property>
+                <property name="icon-name">edit-find</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child type="end">
+          <object class="GtkBox">
+            <property name="visible">1</property>
+            <child>
+              <object class="GtkComboBoxText">
+                <property name="visible">1</property>
+                <property name="active">0</property>
+                <items>
+                  <item translatable="yes">No env</item>
+                </items>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="visible">1</property>
+                <property name="focusable">1</property>
+                <child>
+                  <object class="GtkImage" id="configImage">
+                    <property name="visible">1</property>
+                    <property name="icon-name">system-run</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="visible">1</property>
+                <property name="focusable">1</property>
+                <child>
+                  <object class="GtkImage" id="image1">
+                    <property name="visible">1</property>
+                    <property name="icon-name">list-add</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
