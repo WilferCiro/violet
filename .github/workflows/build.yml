@@ -53,33 +53,33 @@ jobs:
             mingw-w64-x86_64-pkgconf
             mingw-w64-x86_64-glib2
 
-      - name: Configure (Windows)
+      - name: Build
         shell: msys2 {0}
         run: |
           export PATH=/mingw64/bin:$PATH
-          export PKG_CONFIG_PATH=/mingw64/lib/pkgconfig
-          export CMAKE_PREFIX_PATH=/mingw64
-
-          echo "== DEBUG =="
-          which pkg-config
-          pkg-config --version
-          ls /mingw64/lib/pkgconfig | grep gtkmm || true
-
-          pkg-config --modversion gtkmm-4.0
-
           cmake -S . -B build -G "MinGW Makefiles"
+          cmake --build build --config Release
 
-      - name: Build (Windows)
+      - name: Package portable app
         shell: msys2 {0}
         run: |
           export PATH=/mingw64/bin:$PATH
-          cmake --build build -j$(nproc)
 
-      - name: Upload binary
+          mkdir -p dist/lib
+          cp build/violet.exe dist/
+
+          echo "📦 Copiando DLLs necesarias..."
+          ldd dist/violet.exe | grep mingw64 | awk '{print $3}' | xargs -I{} cp {} dist/
+
+          echo "📦 Copiando GTK runtime (schemas, themes, icons)..."
+          cp -r /mingw64/share dist/
+          cp -r /mingw64/lib/gtk-4.0 dist/lib/
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: violet-windows
-          path: build/violet.exe
+          name: violet-windows-portable
+          path: dist
 
   macos:
     name: macOS
