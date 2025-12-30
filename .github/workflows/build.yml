@@ -60,8 +60,11 @@ jobs:
           export PKG_CONFIG_PATH=/mingw64/lib/pkgconfig
           export CMAKE_PREFIX_PATH=/mingw64
 
-          which cmake
-          cmake --version
+          echo "== DEBUG =="
+          which pkg-config
+          pkg-config --version
+          ls /mingw64/lib/pkgconfig | grep gtkmm || true
+
           pkg-config --modversion gtkmm-4.0
 
           cmake -S . -B build -G "MinGW Makefiles"
