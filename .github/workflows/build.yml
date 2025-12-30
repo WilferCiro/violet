@@ -48,7 +48,7 @@ jobs:
           update: true
           install: >
             mingw-w64-x86_64-toolchain
-            mingw-w64-x86_64-gtkmm4
+            mingw-w64-x86_64-gtkmm
             mingw-w64-x86_64-pkg-config
             mingw-w64-x86_64-glib2
 
