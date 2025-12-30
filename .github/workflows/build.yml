@@ -51,9 +51,15 @@ jobs:
             mingw-w64-x86_64-cmake
             mingw-w64-x86_64-pkgconf
 
-      - name: Configure
+      - name: Configure (Windows)
+        if: matrix.os == 'windows-latest'
         shell: msys2 {0}
         run: cmake -S . -B build -G "MinGW Makefiles"
+
+      - name: Build (Windows)
+        if: matrix.os == 'windows-latest'
+        shell: msys2 {0}
+        run: cmake --build build -j$(nproc)
 
       - name: Build
         shell: msys2 {0}
