@@ -73,7 +73,9 @@ jobs:
 
           echo "📦 Copiando GTK runtime (schemas, themes, icons)..."
           cp -r /mingw64/share dist/
-          cp -r /mingw64/lib/gtk-4.0 dist/lib/
+          cp -r /mingw64/lib/girepository-1.0 dist/lib/
+          cp -r /mingw64/lib/glib-2.0 dist/lib/
+          cp -r /mingw64/lib/gtk-4.0/modules dist/lib/ 2>/dev/null || true
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
