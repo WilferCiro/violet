@@ -56,12 +56,21 @@ jobs:
       - name: Configure (Windows)
         shell: msys2 {0}
         run: |
+          export PATH=/mingw64/bin:$PATH
+          export PKG_CONFIG_PATH=/mingw64/lib/pkgconfig
           export CMAKE_PREFIX_PATH=/mingw64
+
+          which cmake
+          cmake --version
+          pkg-config --modversion gtkmm-4.0
+
           cmake -S . -B build -G "MinGW Makefiles"
 
       - name: Build (Windows)
         shell: msys2 {0}
-        run: cmake --build build -j$(nproc)
+        run: |
+          export PATH=/mingw64/bin:$PATH
+          cmake --build build -j$(nproc)
 
       - name: Upload binary
         uses: actions/upload-artifact@v4
