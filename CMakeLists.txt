@@ -8,11 +8,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # GTKMM vía pkg-config (cross-platform)
 # ---------------------------------------
 find_package(PkgConfig REQUIRED)
-if (WIN32)
-  pkg_check_modules(GTKMM REQUIRED IMPORTED_TARGET gtkmm-2.4)
-else()
-  pkg_check_modules(GTKMM REQUIRED IMPORTED_TARGET gtkmm-4.0)
-endif()
+pkg_check_modules(GTKMM REQUIRED IMPORTED_TARGET gtkmm-4.0)
+
 # ---------------------------------------
 # GResources
 # ---------------------------------------
