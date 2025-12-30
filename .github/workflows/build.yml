@@ -51,11 +51,13 @@ jobs:
             mingw-w64-x86_64-cmake
             mingw-w64-x86_64-pkgconf
 
-      - name: Configure
+      - name: Configure (Windows)
         shell: msys2 {0}
-        run: cmake -S . -B build -G "MinGW Makefiles"
+        run: |
+          export CMAKE_PREFIX_PATH=/mingw64
+          cmake -S . -B build -G "MinGW Makefiles"
 
-      - name: Build
+      - name: Build (Windows)
         shell: msys2 {0}
         run: cmake --build build -j$(nproc)
 

@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # =========================
 # GTKMM detection
 # =========================
-if(WIN32 OR APPLE)
+if(WIN32)
     # MSYS2 / macOS (brew)
     find_package(gtkmm-4.0 CONFIG REQUIRED)
     set(GTKMM_TARGET gtkmm-4.0)
@@ -54,7 +54,7 @@ target_include_directories(violet PRIVATE src)
 # =========================
 # Link GTKMM
 # =========================
-if(WIN32 OR APPLE)
+if(WIN32)
     target_link_libraries(violet PRIVATE ${GTKMM_TARGET})
 else()
     target_include_directories(violet PRIVATE ${GTKMM_INCLUDE_DIRS})
