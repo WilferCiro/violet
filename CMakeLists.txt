@@ -4,12 +4,24 @@ project(violet LANGUAGES C CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(GTKMM REQUIRED IMPORTED_TARGET gtkmm-4.0)
+# =========================
+# GTKMM detection
+# =========================
+if(WIN32 OR APPLE)
+    # MSYS2 / macOS (brew)
+    find_package(gtkmm-4.0 CONFIG REQUIRED)
+    set(GTKMM_TARGET gtkmm-4.0)
+else()
+    # Linux
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(GTKMM REQUIRED gtkmm-4.0)
+endif()
 
-# 🔹 Compilar resources
+# =========================
+# Compile GResources
+# =========================
 set(GRESOURCE_XML ${CMAKE_SOURCE_DIR}/resources/violet.gresource.xml)
-set(GRESOURCE_C ${CMAKE_BINARY_DIR}/violet_gresource.c)
+set(GRESOURCE_C   ${CMAKE_BINARY_DIR}/violet_gresource.c)
 
 add_custom_command(
     OUTPUT ${GRESOURCE_C}
@@ -26,6 +38,9 @@ add_custom_command(
 
 add_custom_target(violet_gresource DEPENDS ${GRESOURCE_C})
 
+# =========================
+# Executable
+# =========================
 add_executable(violet
     src/main.cpp
     src/app/app.cpp
@@ -36,8 +51,20 @@ add_dependencies(violet violet_gresource)
 
 target_include_directories(violet PRIVATE src)
 
-target_link_libraries(violet PRIVATE PkgConfig::GTKMM)
+# =========================
+# Link GTKMM
+# =========================
+if(WIN32 OR APPLE)
+    target_link_libraries(violet PRIVATE ${GTKMM_TARGET})
+else()
+    target_include_directories(violet PRIVATE ${GTKMM_INCLUDE_DIRS})
+    target_link_libraries(violet PRIVATE ${GTKMM_LIBRARIES})
+    target_compile_options(violet PRIVATE ${GTKMM_CFLAGS_OTHER})
+endif()
 
+# =========================
+# Install
+# =========================
 include(GNUInstallDirs)
 
 install(
@@ -46,6 +73,6 @@ install(
 )
 
 install(
-  FILES resources/violet.desktop
-  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications
+    FILES resources/violet.desktop
+    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications
 )
