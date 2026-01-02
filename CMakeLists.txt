@@ -32,11 +32,16 @@ add_custom_command(
 add_custom_target(violet_gresource DEPENDS ${GRESOURCE_C})
 
 # ---------------------------------------
-# Ejecutable
+# Executable
 # ---------------------------------------
 add_executable(violet
     src/main.cpp
     src/app/app.cpp
+    src/widgets/navbar/NavBarWidget.cpp
+    src/widgets/request/RequestBasicDataWidget.cpp
+    src/widgets/request/RequestWidget.cpp
+    src/widgets/request/RequestParentWidget.cpp
+    src/widgets/request/RequestBodyWidget.cpp
     ${GRESOURCE_C}
 )
 

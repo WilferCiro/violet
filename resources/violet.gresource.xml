@@ -2,5 +2,7 @@
 <gresources>
   <gresource prefix="/com/example/violet">
     <file>ui/mainwindow.ui</file>
+    <file>ui/requestbasic.ui</file>
+    <file>ui/requestbody.ui</file>
   </gresource>
 </gresources>

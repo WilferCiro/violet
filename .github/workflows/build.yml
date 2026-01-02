@@ -68,10 +68,8 @@ jobs:
           mkdir -p dist/lib
           cp build/violet.exe dist/
 
-          echo "📦 Copiando DLLs necesarias..."
           ldd dist/violet.exe | grep mingw64 | awk '{print $3}' | xargs -I{} cp {} dist/
 
-          echo "📦 Copiando GTK runtime (schemas, themes, icons)..."
           cp -r /mingw64/share dist/
           cp -r /mingw64/lib/girepository-1.0 dist/lib/
           cp -r /mingw64/lib/glib-2.0 dist/lib/
@@ -89,23 +87,19 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    # 1️⃣ Instalar dependencias
     - name: Install dependencies
       run: |
         brew update
         brew install cmake gtkmm4 pkg-config
 
-    # 2️⃣ Configurar CMake
     - name: Configure
       run: |
         export CMAKE_PREFIX_PATH="$(brew --prefix)"
         cmake -S . -B build
 
-    # 3️⃣ Build
     - name: Build
       run: cmake --build build -j$(sysctl -n hw.ncpu)
 
-    # 4️⃣ Copiar dylibs necesarias para portable
     - name: Copy GTK dylibs (portable)
       run: |
         mkdir -p dist/lib
@@ -125,7 +119,6 @@ jobs:
           install_name_tool -id @rpath/$(basename $lib) "$lib"
         done
 
-    # 5️⃣ Subir artefacto
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:

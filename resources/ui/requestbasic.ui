@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.96.3 -->
+<interface>
+  <!-- interface-name requestbasic.ui -->
+  <requires lib="gtk" version="4.18"/>
+  <object class="GtkBox" id="parent">
+    <property name="margin-bottom">10</property>
+    <property name="margin-end">10</property>
+    <property name="margin-start">10</property>
+    <property name="margin-top">10</property>
+    <property name="orientation">vertical</property>
+    <property name="spacing">8</property>
+    <property name="visible">1</property>
+    <child>
+      <object class="GtkEntry" id="name">
+        <property name="focusable">1</property>
+        <property name="placeholder-text" translatable="yes">Request name</property>
+        <property name="visible">1</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">1</property>
+        <child>
+          <object class="GtkComboBoxText" id="method">
+            <property name="active">0</property>
+            <property name="margin-end">5</property>
+            <property name="visible">1</property>
+            <items>
+              <item translatable="yes">GET</item>
+              <item translatable="yes">POST</item>
+              <item translatable="yes">PUT</item>
+              <item translatable="yes">PATCH</item>
+              <item translatable="yes">DELETE</item>
+            </items>
+          </object>
+        </child>
+        <child>
+          <object class="GtkEntry" id="url">
+            <property name="focusable">1</property>
+            <property name="hexpand">1</property>
+            <property name="placeholder-text" translatable="yes">Enter URL</property>
+            <property name="visible">1</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="send_btn">
+            <property name="focusable">1</property>
+            <property name="label" translatable="yes">Send</property>
+            <property name="margin-start">10</property>
+            <property name="receives-default">1</property>
+            <property name="visible">1</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
